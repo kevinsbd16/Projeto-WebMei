@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Relatório de Venda</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<header id="cabecalho">
+		<div id="interfacetop">
+			<h:graphicImage id="logo" library="css" name="logoVerde.png"
+				style="height:67px" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="#{graficoView.data2}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="Data:" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:85px; font-size: 13;"
+				value="#{loginView.usuario.nome}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:90px; font-size: 13;"
+				value="Usuario:" />
+		</div>
+		<div id="corpotop">
+			<h:form>
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:menuitem value="Inicial"
+						actionListener="#{menuView.btnRedirectPaginaInicialAction}"
+						icon="ui-icon-home" />
+
+					<p:submenu label="Vendas" icon="ui-icon-pencil">
+						<p:menuitem value="Laçamentos"
+							actionListener="#{menuView.btnRedirectPaginaVendaAction}"
+							icon="ui-icon-plus" />
+						<p:menuitem value="Lista de vendas"
+							actionListener="#{menuView.btnRedirectListaVendaAction}"
+							icon="ui-icon-note" />
+					</p:submenu>
+
+					<p:menuitem value="Clientes"
+						actionListener="#{menuView.btnRedirectDadosClienteAction}"
+						icon="ui-icon-circle-plus" />
+
+					<p:menuitem value="Método pagamento"
+						actionListener="#{menuView.btnRedirectMetodoAction}"
+						icon="ui-icon-tag" />
+
+					<p:menuitem value="Relatório"
+						actionListener="#{menuView.btnRedirectRelatorioVendaAction}"
+						icon="ui-icon-document" />
+
+					<p:menuitem value="Sair" actionListener="#{loginView.sairLogin}"
+						icon="ui-icon-power" />
+
+				</p:menubar>
+			</h:form>
+		</div>
+	</header>
+
+	<div id="interface">
+		<h:form>
+
+
+			<section id="corpo">
+				<article>
+					<div id="funcao">Relatório anual</div>
+					<br />
+
+					<p:inputText
+						style="width:100px;text-align:center; position:relative;left: 137.5px;"
+						placeholder="Ano" id="txtAnoRelatorio"
+						value="#{vendaView.anoRelatorio}" />
+					<p:commandButton value="Filtrar" id="btnAnoRelatorio"
+						style="position:relative;left: 137.5px;"
+						actionListener="#{vendaView.btnFiltrarAnoRelatorio}" ajax="false" />
+					<br /> <br />
+					<div id="corpoRelatorio">
+						<h:panelGrid id="grid" columns="6" cellpadding="15">
+							<p:outputLabel value="Janeiro:" />
+							<p:outputLabel value="#{vendaView.somas[1]}" />
+							<p:outputLabel value="Fevereiro:" />
+							<p:outputLabel value="#{vendaView.somas[2]}" />
+							<p:outputLabel value="Março:" />
+							<p:outputLabel value="#{vendaView.somas[3]}" />
+							<p:outputLabel value="Abril:" />
+							<p:outputLabel value="#{vendaView.somas[4]}" />
+							<p:outputLabel value="Maio:" />
+							<p:outputLabel value="#{vendaView.somas[5]}" />
+							<p:outputLabel value="Junho:" />
+							<p:outputLabel value="#{vendaView.somas[6]}" />
+							<p:outputLabel value="Julho:" />
+							<p:outputLabel value="#{vendaView.somas[7]}" />
+							<p:outputLabel value="Agosto:" />
+							<p:outputLabel value="#{vendaView.somas[8]}" />
+							<p:outputLabel value="Setembro:" />
+							<p:outputLabel value="#{vendaView.somas[9]}" />
+							<p:outputLabel value="Outubro:" />
+							<p:outputLabel value="#{vendaView.somas[10]}" />
+							<p:outputLabel value="Novembro:" />
+							<p:outputLabel value="#{vendaView.somas[11]}" />
+							<p:outputLabel value="Dezembro:" />
+							<p:outputLabel value="#{vendaView.somas[12]}" />
+							<p:outputLabel value="#{vendaView.anoRelatorio}" />
+							<p:outputLabel value="#{vendaView.somas[0]}" />
+						</h:panelGrid>
+					</div>
+					<br />
+				</article>
+			</section>
+		</h:form>
+	</div>
+	<div id="rodape">
+		Copyright © 2018<br /> Desenvolvedores: Eddie Hideaki Saito, Gustavo
+		Hideo Yoshinaga e Kevin Issao Saito<br /> Web Mei<br />
+
+	</div>
+</h:body>
+</html>

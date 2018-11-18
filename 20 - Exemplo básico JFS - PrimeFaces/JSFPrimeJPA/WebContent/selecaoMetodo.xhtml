@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Seleção de metodos</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<style type="text/css">
+.ui-widget {
+	font-size: 90%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:commandButton value="Recarregar" style="color: #228B22"
+			actionListener="#{metodoView.recarregar}" ajax="false" />
+		<br />
+
+		<p:dataTable var="metodo" value="#{metodoView.listaMetodo}">
+
+			<p:column style="width:25px;text-align: center" headerText="Id">
+				<h:outputText value="#{metodo.cod_tipopagamento}" />
+			</p:column>
+
+			<p:column headerText="Descrição">
+				<h:outputText value="#{metodo.descricao}" />
+			</p:column>
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{metodoView.selectMetodoFromDialog(metodo)}">
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

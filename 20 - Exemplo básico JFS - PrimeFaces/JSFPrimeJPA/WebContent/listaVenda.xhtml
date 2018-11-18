@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Lista da Vendas</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<div id="cabecalho">
+		<h:graphicImage id="logo" library="css" name="logoVerde.png"
+			style="height:67px" />
+		<p:outputLabel
+			style="float: right; position:relative; top:50px; font-size: 13;"
+			value="#{graficoView.data2}" />
+		<p:outputLabel
+			style="float: right; position:relative; top:50px; font-size: 13;"
+			value="Data:" />
+		<p:outputLabel
+			style="float: right; position:relative; top:50px; right:85px; font-size: 13;"
+			value="#{loginView.usuario.nome}" />
+		<p:outputLabel
+			style="float: right; position:relative; top:50px; right:90px; font-size: 13;"
+			value="Usuario:" />
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Inicial"
+					actionListener="#{menuView.btnRedirectPaginaInicialAction}"
+					icon="ui-icon-home" />
+
+				<p:submenu label="Vendas" icon="ui-icon-pencil">
+					<p:menuitem value="Laçamentos"
+						actionListener="#{menuView.btnRedirectPaginaVendaAction}"
+						icon="ui-icon-plus" />
+					<p:menuitem value="Lista de vendas"
+						actionListener="#{menuView.btnRedirectListaVendaAction}"
+						icon="ui-icon-note" />
+				</p:submenu>
+
+				<p:menuitem value="Clientes"
+					actionListener="#{menuView.btnRedirectDadosClienteAction}"
+					icon="ui-icon-circle-plus" />
+
+				<p:menuitem value="Método pagamento"
+					actionListener="#{menuView.btnRedirectMetodoAction}"
+					icon="ui-icon-tag" />
+
+				<p:menuitem value="Relatório"
+					actionListener="#{menuView.btnRedirectRelatorioVendaAction}"
+					icon="ui-icon-document" />
+
+				<p:menuitem value="Sair" actionListener="#{loginView.sairLogin}"
+					icon="ui-icon-power" />
+
+			</p:menubar>
+		</h:form>
+	</div>
+
+	<div id="interface">
+		<h:form>
+
+
+			<section id="corpo">
+				<article>
+
+					<div id="funcao">Lista de vendas</div>
+
+					<br />
+
+					<h:panelGrid columns="7" cellpadding="1">
+						<p:inputText style="width:40px;text-align: center" id="txtDiaF"
+							maxlength="2" value="#{vendaView.diaF}" placeholder="Dia" /> /
+						<p:inputText style="width:60px;text-align: center" id="txtMesF"
+							maxlength="2" value="#{vendaView.mesF}" placeholder="Mês" /> /
+						<p:inputText style="width:70px;text-align: center" id="txtValorF"
+							maxlength="4" value="#{vendaView.valorF}" placeholder="Ano" />
+						<p:commandButton value="Filtrar" id="btnFiltrar"
+							actionListener="#{vendaView.btnFiltrarAction}" ajax="false" />
+						<p:commandButton value="Dia atual" id="btnAtual"
+							actionListener="#{vendaView.btnFiltrarAtualAction}" ajax="false" />
+					</h:panelGrid>
+
+					<p:dataTable id="tbl" var="v" value="#{vendaView.listaVenda}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						reflow="true" paginator="true" rows="10"
+						paginatorPosition="bottom" styleClass="paginated"
+						style="margin-top:20px">
+						<f:facet name="{Exporters}">
+							<h:commandLink>
+								<p:graphicImage library="css" name="pdf.png" width="24" />
+								<p:dataExporter type="pdf" target="tbl" fileName="Vendas"
+									encoding="ISO-8859-1" />
+							</h:commandLink>
+						</f:facet>
+						<p:column style="width:40px;text-align: center" headerText="Id">
+							<h:outputText value="#{v.codigo}" />
+						</p:column>
+						<p:column headerText="Descrição">
+							<h:outputText value="#{v.descricao}" />
+						</p:column>
+						<p:column headerText="Data" style="width:100px;">
+							<h:outputText value="#{v.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Valor" style="width:60px;">
+							<h:outputText value="#{v.valor}" />
+						</p:column>
+						<p:column headerText="Método de pagamento" style="width:100px;">
+							<h:outputText value="#{v.metodo}" />
+						</p:column>
+						<p:column headerText="Cliente">
+							<h:outputText value="#{v.cliente.nome}" />
+						</p:column>
+
+					</p:dataTable>
+				</article>
+			</section>
+		</h:form>
+	</div>
+	<div id="rodape">
+		Copyright © 2018<br /> Desenvolvedores: Eddie Hideaki Saito, Gustavo
+		Hideo Yoshinaga e Kevin Issao Saito<br /> Web Mei<br />
+
+	</div>
+</h:body>
+</html>

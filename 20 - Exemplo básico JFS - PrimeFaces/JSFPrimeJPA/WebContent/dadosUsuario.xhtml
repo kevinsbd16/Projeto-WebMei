@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Cadastro de Usuário</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:graphicImage id="logo" library="css" name="logoVerde.png"
+			style="height:67px" />
+		<br />
+		<br />
+		<p:messages id="messages" closable="true" />
+		<h:panelGrid id="dadosUsuario" columns="2" cellpadding="5">
+
+			<p:outputLabel value="Nome: " />
+			<p:inputText style="height:25px; width: 300px;"
+				placeholder="Insira o nome" value="#{usuarioView.nome}" />
+
+			<p:outputLabel value="CNPJ: " />
+			<p:inputMask for="key" style="height:25px; width: 300px"
+				placeholder="Insira o CNPJ" value="#{usuarioView.cnpj}"
+				mask="99.999.999/9999-99" />
+
+			<p:outputLabel value="E-mail: " />
+			<p:inputMask style="height:25px;" placeholder="Insira o E-mail"
+				value="#{usuarioView.email}" />
+
+			<p:outputLabel value="Senha: " />
+			<p:password style="height:25px;" placeholder="Insira a senha"
+				value="#{usuarioView.senha}" feedback="true" />
+		</h:panelGrid>
+		<br />
+		<p:commandButton value="Cadastrar" style="color: #228B22"
+			actionListener="#{usuarioView.btnSalvarAction}" ajax="false" />
+	</h:form>
+</h:body>
+</html>

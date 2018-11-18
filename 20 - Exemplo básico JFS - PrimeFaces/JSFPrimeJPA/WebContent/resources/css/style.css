@@ -1,0 +1,110 @@
+body {
+	/*background-color: #40E0D0;*/
+	background-image: url("#{resource['css/cinza.png']}");
+	margin: 5px; /* Margem externa */
+	padding: 2px; /* Margem interna */
+}
+
+#rodape {
+	clear: both;
+	font-family: Arial;
+	width: 1000px; /* Comprimento / largura do container */
+	margin: 5 auto; /* Margem externa */
+	padding: 5px; /* Margem interna */
+	background-color: rgba(255, 255, 255, 1);
+	/*float: center;*/
+	border: 0px solid black;
+	border-radius: 5px;
+	text-align: center
+}
+
+#cabecalho {
+	width: 1000px; /* Comprimento / largura do container */
+	margin: 5 auto; /* Margem externa */
+	padding: 5px; /* Margem interna */
+	background-color: rgba(220, 220, 220, 0);
+	/*float: center;*/
+	border: 0px solid black;
+	border-radius: 0px;
+}
+
+#interface {
+	width: 1000px; /* Comprimento / largura do container */
+	margin: 5 auto; /* Margem externa */
+	padding: 5px; /* Margem interna */
+	background-color: #ffffff;
+	/*float: center;*/
+	border: 0px solid black; /* largura do contorno da borda e cor */
+	border-radius: 5px; /* deixar os cantos da borda arredondado */
+}
+
+#corpo {
+	width: 97.5%; /* Comprimento / largura do container */
+	margin: 5 auto; /* Margem externa */
+	padding: 5px; /* Margem interna */
+	background-color: rgba(220, 220, 220, 0);
+	/*float: center;*/
+	border: 1px solid;
+    border-style: dotted; /* deixar a borda pontilhada */
+	border-radius: 5px;
+}
+
+#funcao {
+	background-color: #3CB371;
+	position: relative;
+	top: 5px;
+	margin: 1px;
+	padding: 5px;
+	border-radius: 2px;
+}
+
+header>div {
+	margin-left: 10px;
+}
+
+#login {
+	height: 400px;
+	width: 250px;
+	position: relative;
+	top: 20px;
+	left: 120px;
+	right: 20px;
+}
+
+#interfaceLogin {
+	width: 450px; /* Comprimento / largura do container */
+	margin: 0 auto; /* Margem externa */
+	padding: 0px; /* Margem interna */
+	background-color: #ffffff;
+	border: 0px solid black;
+	border-radius: 5px;
+	position: relative;
+	top: 110px;
+}
+
+#logoLogin {
+	width: 100px;
+	height: 100px;
+	padding: 0px;
+	border: 0px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#relatorio {
+	background-color: #ffffff;
+	border: 1px solid black;
+}
+
+#corpoRelatorio {
+	width: 700px;
+	border: 1px solid;
+    border-style: dotted;;  
+	border-radius: 5px;
+	position: relative;
+	left: 137.5px;
+}
+
+/*.ui-button{
+    background: #3CB371!important;
+}*/

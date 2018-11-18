@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Login</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<div id="interfaceLogin">
+		<h:form>
+
+			<article>
+				<br />
+				<div id="login">
+					<p:growl id="messages" />
+					<h:graphicImage id="logo" library="css" name="LogoLogin.png"
+						style="height:100px; position:relative; left: 42.5px;" />
+
+					<br /> <br />
+
+					<h:outputText value="E-mail:" />
+					<br />
+					<p:inputText id="txtUsuario" value="#{loginView.usuario.email}"
+						placeholder="exemplo@exemplo" />
+					<br /> <br />
+
+					<h:outputText value="Senha:" />
+					<br />
+					<p:password id="txtSenha" value="#{loginView.usuario.senha}" />
+					<br /> <br />
+
+					<p:commandButton value="Entrar" id="btnEntrar" ajax="false"
+						style="width: 220px;" actionListener="#{loginView.Validar}" />
+					<br /> <br />
+					<p:commandButton value="Cadastrar-se"
+						style="width: 220px; height:25px; font-size: 13;"
+						actionListener="#{usuarioView.abrirDialogo}" />
+					<br /> <br />
+				</div>
+
+			</article>
+		</h:form>
+	</div>
+</h:body>
+</html>

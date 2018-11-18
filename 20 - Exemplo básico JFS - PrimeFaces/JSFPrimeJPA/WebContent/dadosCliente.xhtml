@@ -1,0 +1,161 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Dados do Cliente</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<header id="cabecalho">
+		<div id="interfacetop">
+
+			<h:graphicImage id="logo" library="css" name="logoVerde.png"
+				style="height:67px" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="#{graficoView.data2}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="Data:" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:85px; font-size: 13;"
+				value="#{loginView.usuario.nome}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:90px; font-size: 13;"
+				value="Usuario:" />
+		</div>
+		<div id="corpotop">
+			<h:form>
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:menuitem value="Inicial"
+						actionListener="#{menuView.btnRedirectPaginaInicialAction}"
+						icon="ui-icon-home" />
+
+					<p:submenu label="Vendas" icon="ui-icon-pencil">
+						<p:menuitem value="Laçamentos"
+							actionListener="#{menuView.btnRedirectPaginaVendaAction}"
+							icon="ui-icon-plus" />
+						<p:menuitem value="Lista de vendas"
+							actionListener="#{menuView.btnRedirectListaVendaAction}"
+							icon="ui-icon-note" />
+					</p:submenu>
+
+					<p:menuitem value="Clientes"
+						actionListener="#{menuView.btnRedirectDadosClienteAction}"
+						icon="ui-icon-circle-plus" />
+
+					<p:menuitem value="Método pagamento"
+						actionListener="#{menuView.btnRedirectMetodoAction}"
+						icon="ui-icon-tag" />
+
+					<p:menuitem value="Relatório"
+						actionListener="#{menuView.btnRedirectRelatorioVendaAction}"
+						icon="ui-icon-document" />
+
+					<p:menuitem value="Sair" actionListener="#{loginView.sairLogin}"
+						icon="ui-icon-power" />
+
+				</p:menubar>
+			</h:form>
+		</div>
+	</header>
+
+	<div id="interface">
+		<h:form>
+
+
+			<section id="corpo">
+				<article>
+					<div id="funcao">Cadastro de Clientes</div>
+					<br />
+					<p:messages id="messages" closable="true" />
+					<h:panelGrid id="dadosCliente" columns="2" cellpadding="5">
+
+						<p:outputLabel value="ID: " style="display:none" />
+						<p:inputText value="#{clienteView.codigo}" style="display:none" />
+
+						<p:outputLabel value="Nome: " />
+						<p:inputText style="height:25px; width: 300px;" id="txtNome"
+							placeholder="Insira o nome" value="#{clienteView.nome}" />
+
+						<p:outputLabel value="E-mail: " />
+						<p:inputText style="height:25px; width: 300px" id="txtEmail"
+							placeholder="Insira o e-mail" value="#{clienteView.email}" />
+
+						<p:outputLabel for="phone" value="Telefone: " />
+						<p:inputMask style="height:25px;" id="phone"
+							placeholder="(00)00000-0000" value="#{clienteView.telefone}"
+							mask="(99) 99999-9999" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="3" cellpadding="5">
+
+						<p:commandButton value="Procurar" icon="ui-icon-extlink"
+							style="color: #000000"
+							actionListener="#{clienteView.abrirDialogo}" process="@this"
+							update="@none">
+							<p:ajax event="dialogReturn" listener="#{clienteView.emDialogo}"
+								process="@this" update="dadosCliente" />
+							<p:resetInput target="dadosCliente" />
+						</p:commandButton>
+
+						<p:commandButton value="Excluir" id="btnExcluir"
+							style="color: #B22222"
+							actionListener="#{clienteView.btnExcluirAction}" ajax="false"
+							icon="ui-icon-trash" />
+
+						<p:commandButton value="Salvar" id="btnSalvar"
+							style="color: #228B22"
+							actionListener="#{clienteView.btnSalvarAction}" ajax="false"
+							icon="ui-icon-check" />
+
+					</h:panelGrid>
+
+					<p:dataTable id="tbl" var="c" value="#{clienteView.listaCliente}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						reflow="true" paginator="true" rows="10"
+						paginatorPosition="bottom" styleClass="paginated"
+						style="margin-top:20px;">
+						<f:facet name="{Exporters}">
+							<h:commandLink>
+								<p:graphicImage library="css" name="pdf.png" width="24" />
+								<p:dataExporter type="pdf" target="tbl" fileName="Clientes"
+									encoding="ISO-8859-1" />
+							</h:commandLink>
+						</f:facet>
+						<f:facet name="header">
+                        Clientes
+                        </f:facet>
+						<p:column style="width:25px;text-align: center" headerText="Id">
+							<h:outputText value="#{c.codigo}" />
+						</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{c.nome}" />
+						</p:column>
+						<p:column headerText="Telefone">
+							<h:outputText value="#{c.telefone}" />
+						</p:column>
+						<p:column headerText="E-mail">
+							<h:outputText value="#{c.email}" />
+						</p:column>
+					</p:dataTable>
+
+				</article>
+			</section>
+
+
+		</h:form>
+	</div>
+	<div id="rodape">
+		Copyright © 2018<br /> Desenvolvedores: Eddie Hideaki Saito, Gustavo
+		Hideo Yoshinaga e Kevin Issao Saito<br /> Web Mei<br />
+
+	</div>
+</h:body>
+</html>

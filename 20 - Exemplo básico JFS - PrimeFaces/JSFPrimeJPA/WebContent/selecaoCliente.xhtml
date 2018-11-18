@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Clientes</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<style type="text/css">
+.ui-widget {
+	font-size: 90%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<!-- ******************************AQUI***************************** -->
+
+		<p:inputText id="txtNomeF" value="#{clienteView.nomeF}" />
+		<!-- nomeF = nome da variavel criada na view -->
+		<p:commandButton value="Filtrar" id="btnFiltrar"
+			actionListener="#{clienteView.btnFiltrarAction}" ajax="false" />
+
+		<!-- ******************************AQUI***************************** -->
+		<br />
+		<br />
+
+		<p:dataTable var="cliente" value="#{clienteView.listaCliente}">
+
+			<p:column style="width:25px;text-align: center" headerText="Id">
+				<h:outputText value="#{cliente.codigo}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+
+			<p:column headerText="Telefone">
+				<h:outputText value="#{cliente.telefone}" />
+			</p:column>
+
+			<p:column headerText="E-mail">
+				<h:outputText value="#{cliente.email}" />
+			</p:column>
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{clienteView.selectClienteFromDialog(cliente)}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

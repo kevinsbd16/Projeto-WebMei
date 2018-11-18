@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Seleção de venda</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<style type="text/css">
+.ui-widget {
+	font-size: 90%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<!-- ******************************AQUI***************************** -->
+
+		<p:inputText style="width:40px;text-align: center" id="txtDiaF"
+			maxlength="2" value="#{vendaView.diaF}" /> /
+						<p:inputText style="width:40px;text-align: center" id="txtMesF"
+			maxlength="2" value="#{vendaView.mesF}" /> /
+						<p:inputText style="width:70px;text-align: center" id="txtValorF"
+			maxlength="4" value="#{vendaView.valorF}" />
+		<p:commandButton value="Filtrar" id="btnFiltrar"
+			actionListener="#{vendaView.btnFiltrarAction}" ajax="false" />
+		<p:commandButton value="Dia atual" id="btnAtual"
+			actionListener="#{vendaView.btnFiltrarAtualAction}" ajax="false" />
+
+		<!-- ******************************AQUI***************************** -->
+		<br />
+		<br />
+
+		<p:dataTable id="tbl" var="venda" value="#{vendaView.listaVenda}">
+
+			<p:column style="width:40px;text-align: center" headerText="Id">
+				<h:outputText value="#{venda.codigo}" />
+			</p:column>
+			<p:column headerText="Descrição">
+				<h:outputText value="#{venda.descricao}" />
+			</p:column>
+			<p:column headerText="Data" style="width:100px;text-align: center">
+				<h:outputText value="#{venda.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Valor" style="width:60px;text-align: center">
+				<h:outputText value="#{venda.valor}" />
+			</p:column>
+			<p:column headerText="Método de pagamento"
+				style="width:100px;text-align: center">
+				<h:outputText value="#{venda.metodo}" />
+			</p:column>
+			<p:column headerText="Cliente">
+				<h:outputText value="#{venda.cliente.nome}" />
+			</p:column>
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{vendaView.selectVendaFromDialog(venda)}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

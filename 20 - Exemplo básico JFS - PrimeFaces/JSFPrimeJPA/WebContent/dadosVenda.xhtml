@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Cadastro de Venda</title>
+	<link rel="shortcut icon" type="image/x-jpg"
+		href="#{resource['css/logoVerde.png']}" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<div id="cabecalho">
+		<div id="interfacetop">
+			<h:graphicImage id="logo" library="css" name="logoVerde.png"
+				style="height:67px" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="#{graficoView.data2}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; font-size: 13;"
+				value="Data:" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:85px; font-size: 13;"
+				value="#{loginView.usuario.nome}" />
+			<p:outputLabel
+				style="float: right; position:relative; top:50px; right:90px; font-size: 13;"
+				value="Usuario:" />
+		</div>
+		<div id="corpotop">
+			<h:form>
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:menuitem value="Inicial"
+						actionListener="#{menuView.btnRedirectPaginaInicialAction}"
+						icon="ui-icon-home" />
+
+					<p:submenu label="Vendas" icon="ui-icon-pencil">
+						<p:menuitem value="Laçamentos"
+							actionListener="#{menuView.btnRedirectPaginaVendaAction}"
+							icon="ui-icon-plus" />
+						<p:menuitem value="Lista de vendas"
+							actionListener="#{menuView.btnRedirectListaVendaAction}"
+							icon="ui-icon-note" />
+					</p:submenu>
+
+					<p:menuitem value="Clientes"
+						actionListener="#{menuView.btnRedirectDadosClienteAction}"
+						icon="ui-icon-circle-plus" />
+
+					<p:menuitem value="Método pagamento"
+						actionListener="#{menuView.btnRedirectMetodoAction}"
+						icon="ui-icon-tag" />
+
+					<p:menuitem value="Relatório"
+						actionListener="#{menuView.btnRedirectRelatorioVendaAction}"
+						icon="ui-icon-document" />
+
+					<p:menuitem value="Sair" actionListener="#{loginView.sairLogin}"
+						icon="ui-icon-power" />
+
+				</p:menubar>
+			</h:form>
+		</div>
+	</div>
+
+	<div id="interface">
+		<h:form>
+
+			<section id="corpo">
+				<article>
+					<div id="funcao">Lançamento de vendas</div>
+
+					<p:messages id="messages" closable="true" />
+					<br />
+
+					<h:panelGrid id="dadosVenda" columns="2" cellpadding="5">
+
+						<p:commandButton value="Select Cliente" icon="ui-icon-extlink"
+							actionListener="#{vendaView.abrirDialogo}">
+							<p:ajax event="dialogReturn" listener="#{vendaView.emDialogo}"
+								update="txtnome" />
+						</p:commandButton>
+
+						<p:inputText id="txtnome" style="width: 300px;"
+							value="#{vendaView.cliente.nome}" placeholder="Nome do cliente" />
+
+						<h:outputText value="Descrição:" />
+						<p:inputText id="txtDescricao" style="width: 300px;"
+							value="#{vendaView.descricao}" placeholder="Insira uma descrição" />
+
+						<h:outputText value="Valor:" />
+						<p:inputText id="txtValor" value="#{vendaView.valor}" />
+
+						<h:outputText value="Data:" />
+						<p:calendar id="data" value="#{vendaView.data}"
+							placeholder="Selecione uma data" pattern="dd/MM/yyyy" mask="true" />
+
+						<p:outputLabel for="console" value="Metodo de pagamento:" />
+						<p:selectOneMenu id="console" value="#{vendaView.metodo}"
+							style="width:125px">
+							<f:selectItems value="#{vendaView.metodoSelect}" />
+						</p:selectOneMenu>
+						<br />
+					</h:panelGrid>
+
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:commandButton value="Procurar" icon="ui-icon-extlink"
+							style="color: #000000"
+							actionListener="#{vendaView.abrirDialogoVenda}" process="@this"
+							update="@none">
+							<p:ajax event="dialogReturn" listener="#{vendaView.emVenda}"
+								process="@this" update="dadosVenda" />
+						</p:commandButton>
+						<p:commandButton value="Excluir" id="btnExcluir"
+							style="color: #B22222"
+							actionListener="#{vendaView.btnExcluirAction}" ajax="false"
+							icon="ui-icon-trash" />
+						<p:commandButton value="Salvar" id="btnSalvar"
+							style="color: #228B22"
+							actionListener="#{vendaView.btnSalvarAction}" ajax="false"
+							icon="ui-icon-check" />
+					</h:panelGrid>
+					<br /> <br /> <br />
+				</article>
+			</section>
+		</h:form>
+	</div>
+	<div id="rodape">
+		Copyright © 2018<br /> Desenvolvedores: Eddie Hideaki Saito, Gustavo
+		Hideo Yoshinaga e Kevin Issao Saito<br /> Web Mei<br />
+
+	</div>
+</h:body>
+</html>
